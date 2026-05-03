@@ -14,32 +14,33 @@ const NAV_ITEMS = [
 
 const SERVICES = [
   {
+    icon: "Gift",
+    title: "Первая консультация",
+    desc: "Знакомство без обязательств: обсуждаем ваш запрос, устанавливаем контакт — уже идёт работа. Если почувствуем взаимный отклик, записываемся на полноценную терапию.",
+    price: "Бесплатно",
+    duration: "15 мин",
+    highlight: true,
+  },
+  {
     icon: "Brain",
     title: "Индивидуальная терапия",
-    desc: "Глубокая работа с внутренними конфликтами, тревогой, страхами и паттернами поведения.",
-    price: "от 4 500 ₽",
+    desc: "Глубокая работа с внутренними конфликтами, тревогой, страхами и паттернами поведения. Для взрослых.",
+    price: "5 000 ₽",
+    duration: "60 мин",
+  },
+  {
+    icon: "Sparkles",
+    title: "Терапия для подростков",
+    desc: "Бережная работа с подростками до 18 лет: самооценка, отношения, тревога, поиск себя.",
+    price: "3 000 ₽",
     duration: "60 мин",
   },
   {
     icon: "Heart",
     title: "Телесно-ориентированная работа",
     desc: "Исследование телесных зажимов, восстановление контакта с телом и эмоциями.",
-    price: "от 5 000 ₽",
+    price: "5 000 ₽",
     duration: "75 мин",
-  },
-  {
-    icon: "Moon",
-    title: "Работа с подсознанием",
-    desc: "Метафорические карты, образные техники, работа с частями личности.",
-    price: "от 5 500 ₽",
-    duration: "90 мин",
-  },
-  {
-    icon: "Users",
-    title: "Парная консультация",
-    desc: "Восстановление связи и диалога в отношениях, работа с конфликтами в паре.",
-    price: "от 6 500 ₽",
-    duration: "90 мин",
   },
 ];
 
@@ -130,7 +131,7 @@ export default function Index() {
             className="font-display text-xl font-light tracking-wide"
             style={{ color: "hsl(25,20%,20%)" }}
           >
-            Елена <em className="italic" style={{ color: "hsl(22,35%,38%)" }}>Соколова</em>
+            Ирина <em className="italic" style={{ color: "hsl(22,35%,38%)" }}>Бирюкова</em>
           </button>
 
           <div className="hidden md:flex items-center gap-8">
@@ -229,6 +230,7 @@ export default function Index() {
               Встреча <br />
               <em className="italic" style={{ color: "hsl(22,35%,38%)" }}>с собой</em> <br />
               начинается здесь
+
             </h1>
             <p
               className="font-body text-base font-light leading-relaxed mb-10 max-w-md"
@@ -300,7 +302,7 @@ export default function Index() {
               }}
             >
               <p className="font-body text-xs font-light" style={{ color: "hsl(25,15%,45%)" }}>онлайн и очно</p>
-              <p className="font-display text-lg font-light" style={{ color: "hsl(25,20%,20%)" }}>Москва</p>
+              <p className="font-display text-lg font-light" style={{ color: "hsl(25,20%,20%)" }}>Сочи</p>
             </div>
           </div>
         </div>
@@ -355,7 +357,7 @@ export default function Index() {
               className="font-body text-base font-light leading-relaxed mb-5"
               style={{ color: "hsl(25,15%,40%)" }}
             >
-              Меня зовут Елена Соколова. Более 8 лет я работаю с людьми, которые
+              Меня зовут Ирина Бирюкова. Я работаю с людьми, которые
               чувствуют внутренний разлад — когда голова говорит одно, тело
               другое, а душа молчит.
             </p>
@@ -474,23 +476,30 @@ export default function Index() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {SERVICES.map((s, i) => (
+            {SERVICES.map((s: typeof SERVICES[0] & { highlight?: boolean }, i) => (
               <div
                 key={s.title}
                 className="reveal p-8 rounded-3xl border transition-all duration-300"
                 style={{
-                  borderColor: "hsl(36,10%,35%)",
+                  borderColor: s.highlight ? "hsl(22,40%,55%)" : "hsl(36,10%,35%)",
+                  background: s.highlight ? "hsla(22,35%,38%,0.12)" : "transparent",
                   transitionDelay: `${i * 0.1}s`,
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "hsl(22,35%,55%)";
-                  e.currentTarget.style.background = "hsl(25,20%,24%)";
+                  e.currentTarget.style.borderColor = "hsl(22,35%,65%)";
+                  e.currentTarget.style.background = s.highlight ? "hsla(22,35%,38%,0.2)" : "hsl(25,20%,24%)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "hsl(36,10%,35%)";
-                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.borderColor = s.highlight ? "hsl(22,40%,55%)" : "hsl(36,10%,35%)";
+                  e.currentTarget.style.background = s.highlight ? "hsla(22,35%,38%,0.12)" : "transparent";
                 }}
               >
+                {s.highlight && (
+                  <div className="mb-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-body font-light"
+                    style={{ background: "hsl(22,40%,55%)", color: "hsl(36,30%,96%)" }}>
+                    ✦ Начните отсюда — это бесплатно
+                  </div>
+                )}
                 <div className="flex items-start justify-between mb-5">
                   <div
                     className="w-12 h-12 rounded-2xl flex items-center justify-center"
@@ -501,7 +510,7 @@ export default function Index() {
                   <div className="text-right">
                     <p
                       className="font-display text-xl font-light"
-                      style={{ color: "hsl(22,40%,72%)" }}
+                      style={{ color: s.highlight ? "hsl(36,70%,80%)" : "hsl(22,40%,72%)" }}
                     >
                       {s.price}
                     </p>
@@ -607,8 +616,7 @@ export default function Index() {
             className="font-body text-base font-light mb-10 max-w-xl mx-auto leading-relaxed"
             style={{ color: "hsl(25,15%,45%)" }}
           >
-            Первая встреча — знакомство без обязательств. Мы обсудим ваш запрос и
-            я отвечу на любые вопросы.
+            Первая консультация — бесплатно, 15 минут. Мы познакомимся, обсудим ваш запрос и сразу начнём контакт. Если почувствуем взаимный отклик — запишемся на полноценную терапию.
           </p>
 
           <div
@@ -700,7 +708,7 @@ export default function Index() {
           <div className="grid md:grid-cols-3 gap-10 reveal">
             <div>
               <p className="font-display text-2xl font-light mb-2" style={{ color: "hsl(25,20%,20%)" }}>
-                Елена <em className="italic" style={{ color: "hsl(22,35%,38%)" }}>Соколова</em>
+                Ирина <em className="italic" style={{ color: "hsl(22,35%,38%)" }}>Бирюкова</em>
               </p>
               <p className="font-body text-sm font-light" style={{ color: "hsl(25,15%,50%)" }}>
                 Психолог · Телесная терапия
@@ -714,9 +722,9 @@ export default function Index() {
                 Связь
               </p>
               {[
-                { icon: "Mail", text: "elena@example.com" },
+                { icon: "Mail", text: "irina@example.com" },
                 { icon: "Phone", text: "+7 (999) 000-00-00" },
-                { icon: "MessageCircle", text: "@elena_psy" },
+                { icon: "MessageCircle", text: "@irina_bpsy" },
               ].map((c) => (
                 <div key={c.text} className="flex items-center gap-2">
                   <Icon name={c.icon} size={14} fallback="Circle" className="shrink-0" style={{ color: "hsl(22,35%,50%)" } as React.CSSProperties} />
@@ -734,7 +742,7 @@ export default function Index() {
                 Приём
               </p>
               <p className="font-body text-sm font-light" style={{ color: "hsl(25,15%,40%)" }}>
-                Очно: Москва, ул. Пример, 12
+                Очно: Сочи
               </p>
               <p className="font-body text-sm font-light" style={{ color: "hsl(25,15%,40%)" }}>
                 Онлайн: Zoom / Telegram
@@ -750,7 +758,7 @@ export default function Index() {
             style={{ borderColor: "hsl(30,20%,84%)" }}
           >
             <p className="font-body text-xs font-light" style={{ color: "hsl(25,10%,60%)" }}>
-              © 2024 Елена Соколова. Все права защищены.
+              © 2024 Ирина Бирюкова. Все права защищены.
             </p>
             <p className="font-body text-xs font-light" style={{ color: "hsl(25,10%,65%)" }}>
               Психолог · Гештальт · Телесная терапия
