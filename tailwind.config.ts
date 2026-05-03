@@ -7,6 +7,7 @@ export default {
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
+			"./1777835670889792258.html"
 	],
 	prefix: "",
 	theme: {
@@ -68,27 +69,34 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			fontFamily: {
+				display: ['"Cormorant Garamond"', 'serif'],
+				body: ['"Golos Text"', 'sans-serif'],
+			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
-				}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				fadeUp: {
+					from: { opacity: '0', transform: 'translateY(30px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
+				},
+				floatBlob: {
+					'0%, 100%': { borderRadius: '60% 40% 70% 30% / 50% 60% 40% 50%' },
+					'33%': { borderRadius: '40% 60% 30% 70% / 60% 40% 60% 40%' },
+					'66%': { borderRadius: '70% 30% 50% 50% / 40% 70% 30% 60%' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-up': 'fadeUp 0.9s ease-out forwards',
+				'float-blob': 'floatBlob 8s ease-in-out infinite',
 			}
 		}
 	},
